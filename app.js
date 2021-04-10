@@ -1,13 +1,11 @@
-const Dollars = (props) => {
+const Currency = (props) => {
   const value = (props.cash / props.ratio).toFixed(2);
 
-  return <div>Wartość w dolarach: {props.cash <= 0 ? "" : value}</div>;
-};
-
-const Euros = (props) => {
-  const value = (props.cash / props.ratio).toFixed(2);
-
-  return <div>Wartość w euro: {props.cash <= 0 ? "" : value}</div>;
+  return (
+    <div>
+      {props.text} {props.cash <= 0 ? "" : value}
+    </div>
+  );
 };
 
 class ExchangeCounter extends React.Component {
@@ -31,8 +29,8 @@ class ExchangeCounter extends React.Component {
         <label>
           <input value={amount} onChange={this.handleChange} type="number" />
         </label>
-        <Dollars cash={amount} ratio={ratioDollar} />
-        <Euros cash={amount} ratio={ratioEuro} />
+        <Currency text={"$:"} cash={amount} ratio={ratioDollar} />
+        <Currency text={"€:"} cash={amount} ratio={ratioEuro} />
       </div>
     );
   }
