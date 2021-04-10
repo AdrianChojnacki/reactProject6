@@ -11,9 +11,15 @@ const Currency = (props) => {
 class ExchangeCounter extends React.Component {
   state = {
     amount: "",
-    ratioDollar: 3.8,
-    ratioEuro: 4.5,
+    // ratioDollar: 3.8,
+    // ratioEuro: 4.5,
   };
+
+  currencies = [
+    { id: 1, name: "dollar", ratio: 3.8, title: "$:" },
+    { id: 2, name: "euro", ratio: 4.5, title: "€:" },
+    { id: 3, name: "pound", ratio: 5.2, title: "£:" },
+  ];
 
   handleChange = (e) => {
     this.setState({
@@ -22,15 +28,18 @@ class ExchangeCounter extends React.Component {
   };
 
   render() {
-    const { amount, ratioDollar, ratioEuro } = this.state;
+    const { amount } = this.state;
+
+    const currencies = this.currencies.map((currency) => (
+      <Currency key={currency.id} text={currency.title} cash={amount} ratio={currency.ratio} />
+    ));
 
     return (
       <div className="app">
         <label>
           <input value={amount} onChange={this.handleChange} type="number" />
         </label>
-        <Currency text={"$:"} cash={amount} ratio={ratioDollar} />
-        <Currency text={"€:"} cash={amount} ratio={ratioEuro} />
+        {currencies}
       </div>
     );
   }
