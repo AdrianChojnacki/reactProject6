@@ -11,8 +11,6 @@ const Currency = (props) => {
 class ExchangeCounter extends React.Component {
   state = {
     amount: "",
-    // ratioDollar: 3.8,
-    // ratioEuro: 4.5,
   };
 
   currencies = [
